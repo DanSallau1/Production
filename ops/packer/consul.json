@@ -1,0 +1,63 @@
+{
+	"variables": {
+		"aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+		"aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+		"aws_region": "us-east-1",
+		"ssh_username": "ubuntu",
+		"source_ami": "ami-10b68a78",
+		"atlas_username": "{{env `ATLAS_USERNAME`}}",
+		"atlas_build_name": "consul"
+	},
+
+	"builders": [
+	{
+		"type": "amazon-ebs",
+		"access_key": "{{ user `AWS_ACCESS_KEY_ID` }}",
+		"secret_key"  : "{{ user `AWS_SECRET_ACCESS_KEY` }}",
+		"region": "{{user `aws_region`}}",
+		"ssh_username": "{{user `ssh_username`}}",
+		"instance_type": "t1.micro",
+		"source_ami": "{{user `source_ami`}}",
+		"ami_name": "consul {{timestamp}}",
+		"ami_description": "AMI for culturely consul",
+		"run_tags": {
+			"ami-create": "consul"			
+		},
+		"tags": {
+			"ami": "consul"
+		}
+	}
+
+	],
+
+	"push": {
+		"name" : "Panda/consul_culturely",
+		"vcs": false
+	},
+
+	"provisioners": [
+	{
+		"type": "shell",
+		"script": "scripts/cloud.sh"
+	},
+
+	{
+		"type": "puppet-masterless",
+		"manifest_file": "puppet/manifests/consul_server.pp",
+		"module_paths" : ["puppet/modules"]
+	}
+
+	],
+
+	"post-processors": [
+	{
+		"type": "atlas",
+		"artifact": "{{ user `atlas_username`}}/consul_culturely",
+		"artifact_type": "amazon.ami",
+		"metadata": {
+			"created_at": "{{timestamp}}"
+		}
+	}
+
+	]	
+}
