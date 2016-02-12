@@ -1,0 +1,20 @@
+<VirtualHost *:<%= @port -%>>
+    ServerName <%= @servername %>
+
+    ServerAdmin hamza@cultureandbrands.com
+	WSGIScriptAlias / /var/www/html/culturely.wsgi
+
+	<Directory /var/www/html/>
+	  Order allow,deny
+	  Allow from all
+	</Directory>
+	Alias /static /var/www/html/static
+	<Directory /var/www/html/static/>
+	  Order allow,deny
+	  Allow from all
+	</Directory>     
+
+	ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
