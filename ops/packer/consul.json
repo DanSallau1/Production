@@ -6,7 +6,7 @@
 		"ssh_username": "ubuntu",
 		"source_ami": "ami-10b68a78",
 		"atlas_username": "{{env `ATLAS_USERNAME`}}",
-		"atlas_build_name": "consul"
+		"atlas_build_name": "consul_culturely"
 	},
 
 	"builders": [
@@ -24,7 +24,7 @@
 			"ami-create": "consul"			
 		},
 		"tags": {
-			"ami": "consul"
+			"ami": "consul_culturely"
 		}
 	}
 
