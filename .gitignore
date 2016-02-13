@@ -2,3 +2,14 @@ ssh_keys
 .terraform
 *.pem
 *.pub
+.*.sw?
+pkg
+spec/fixtures
+.rspec_system
+Gemfile.lock
+log/
+vendor/
+.bundle/
+.DS_Store
+.pem
+.pub
