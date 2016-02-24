@@ -1,1 +1,1 @@
-![Terraform](/readme.jpg)
+![Terraform](readme.jpg)
