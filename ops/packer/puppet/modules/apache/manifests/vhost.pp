@@ -27,7 +27,6 @@ define apache::vhost (
     	}
 	}
 
-
 	file { 'culturely':
 		path    => "${document_root}/culturely.wsgi",
 		ensure  => file,
@@ -50,5 +49,4 @@ define apache::vhost (
 		require      => [File['config_file'], File['culturely']],
 		#refreshonly => true,
 	}
-
 }
