@@ -1,13 +1,20 @@
-# Class: ntp::ntpfile
+# Define: ntp::ntpfile
+# Parameters:
+# arguments
 #
-#
-class ntp::ntpfile {
-	# resources
-	file { '/etc/ntp.conf':
-		ensure  => file,
-		source  => 'puppet:///modules/ntp/ntp.conf',
-		require => Package['ntp'],
-		
+define ntp::ntpfile (
+	$file_name, $file_path, $service_name
+
+	) {
+	# puppet code
+	File {
+		mode => 0677,
 	}
 
+	file { 'ntptime':
+		path   => "${file_path}/ntp.conf",
+		ensure => file,
+		source => "puppet:///modules/ntp/npt.conf",
+		notify => Service['ntp']
+	}
 }

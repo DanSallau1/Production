@@ -1,14 +1,16 @@
 # Class: ntp::service
 #
 #
-class ntp::service {
+class ntp::service (
+	$service_name = $npt::params::service_name
+
+	) {
 	# resources
 	service { 'ntp':
+		name        => $service_name,
 		enable      => true,
 		ensure      => running,
-		subscribe   => File['/etc/ntp.conf'],
-		#hasrestart => true,
-		#hasstatus  => true,
-		#require    => Class["config"],
+		require     => Package["ntp"],
 	}
+
 }
