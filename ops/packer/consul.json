@@ -37,14 +37,30 @@
 
 	"provisioners": [
 	{
-		"type": "shell",
-		"script": "scripts/cloud.sh"
+		"type":"shell",
+		"script" : "scripts/consul.sh"
 	},
 
 	{
-		"type": "puppet-masterless",
-		"manifest_file": "puppet/manifests/consul_server.pp",
-		"module_paths" : ["puppet/modules"]
+		"type": "file",
+		"source": "files/consul_server.json",
+		"destination" : "/tmp/consul.json.tmp"
+	},
+
+	{
+		"type": "file",
+		"source": "init/consul_server.conf",
+		"destination" : "/tmp/consul.conf"
+	},
+
+	{
+		"type": "shell",
+		"script": "scripts/consul_conf_install.sh"
+	},
+
+	{
+		"type": "shell",
+		"script": "scripts/dnsmasq_install.sh"
 	}
 
 	],
