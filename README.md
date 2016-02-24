@@ -1,1 +1,1 @@
-![Delivery Flow](/workflow.png)
+![Delivery Flow](/workflow.jpg)
