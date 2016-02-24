@@ -4,8 +4,6 @@
   include ssh
   include localusers
   include ntp
-  include database
-  include client
-  
+  include database  
 }
 
