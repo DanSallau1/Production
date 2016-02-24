@@ -30,6 +30,32 @@
         "script" : "scripts/cloud.sh"
     },
 
+    {
+        "type":"shell",
+        "script" : "scripts/consul.sh"
+    },
+
+    {
+        "type": "file",
+        "source": "files/consul_client.json",
+        "destination" : "/tmp/consul.json.tmp"
+    },
+
+    {
+        "type": "file",
+        "source": "init/consul_server.conf",
+        "destination" : "/tmp/consul.conf"
+    },
+
+    {
+        "type": "shell",
+        "script": "scripts/consul_conf_install.sh"
+    },
+
+    {
+        "type": "shell",
+        "script": "scripts/dnsmasq_install.sh"
+    },
 
     {
         "type": "puppet-masterless",
