@@ -1,1 +1,1 @@
-![Packer](/packer.jpg)
+![Packer](packer.jpg)
