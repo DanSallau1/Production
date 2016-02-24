@@ -73,6 +73,11 @@ resource "aws_route" "public_internet_gateway" {
 resource "aws_route_table" "private" {
 	vpc_id = "${aws_vpc.culturely_vpc.id}"
 
+	route {
+		cidr_block = "0.0.0.0/0"
+		gateway_id = "${aws_internet_gateway.culturely_gate.id}"
+	}
+
 	lifecycle{
 		create_before_destroy = true
 	}
@@ -99,8 +104,7 @@ resource "aws_route_table_association" "public" {
 # elb
 #--------------------------------------------------------------
 resource "aws_elb" "elb" {
-	name = "elb"
-	subnets = ["${aws_subnet.public.id}", "${aws_subnet.private.id}"]
+	subnets = ["${aws_subnet.public.id}"]
 	security_groups = ["${aws_security_group.web.id}", "${aws_security_group.consul-security.id}"]
 
 	listener {
@@ -108,6 +112,41 @@ resource "aws_elb" "elb" {
         instance_protocol = "http"
         lb_port = 80
         lb_protocol = "http"
+	}
+
+	listener {
+		instance_port = 8300
+        instance_protocol = "tcp"
+        lb_port = 8300
+        lb_protocol = "tcp"
+	}
+
+	listener {
+		instance_port = 8301
+        instance_protocol = "tcp"
+        lb_port = 8301
+        lb_protocol = "tcp"
+	}
+
+	listener {
+		instance_port = 8400
+        instance_protocol = "tcp"
+        lb_port = 8400
+        lb_protocol = "tcp"
+	}
+
+	listener {
+		instance_port = 8500
+        instance_protocol = "tcp"
+        lb_port = 8500
+        lb_protocol = "tcp"
+	}
+
+	listener {
+		instance_port = 8600
+        instance_protocol = "tcp"
+        lb_port = 8600
+        lb_protocol = "tcp"
 	}
 
 	health_check {
@@ -128,17 +167,17 @@ resource "aws_elb" "elb" {
 #--------------------------------------------------------------
 # DNS(Route53)
 #--------------------------------------------------------------
-resource "aws_route53_record" "dns" {
-	zone_id = "{aws_route53_zone.primary.zone_id}"
-	name    = "linuxacademylab23.com"
-	type = "CNAME"
-	ttl = "300"
-	records = ["${aws_elb.elb.dns_name}"]
+# resource "aws_route53_record" "dns" {
+# 	zone_id = "{aws_route53_zone.primary.zone_id}"
+# 	name    = "23.com"
+# 	type = "CNAME"
+# 	ttl = "300"
+# 	records = ["${aws_elb.elb.dns_name}"]
 
-	lifecycle {
-		create_before_destroy = true
-	}
-}
+# 	lifecycle {
+# 		create_before_destroy = true
+# 	}
+# }
 
 
 

@@ -1,23 +1,31 @@
 variable "key_name" {
-	default = "culturely"
+	default = "Panda-key"
+}
+
+variable "region" {
+	default = "us-east-1"
 }
 
 variable "aws_access_key" {
-	default = "{{{env `aws_access_key_id`}}"
+	default = "{{{env `AWS_ACCESS_KEY_ID`}}"
 }
 
 variable "aws_secret_key" {
-	default = "{{env `aws_secret_access_key`}}"
+	default = "{{env `AWS_SECRET_ACCESS_KEY`}}"
 }
 
 variable "atlas_token" {
-	default = "{{env `ATLAS_TOKEN`}}"
+	default = "alJTHeHJmK77EQ.atlasv1.rg6W1p75CKDW1O4kLbOVkNRNcXsSrcUCTC1kQtkoWdpr9ZRCgafQlz1LM7Ab13PJ1JA"
 }
 
 variable "atlas_username" {
-	default = "{{env `ATLAS_USERNAME`}}"
+	default = "Panda"
 }
 
-variable "consul_server_count" {
-	default = 3
+variable "consul_bootstrap_expect" {
+	default = 5
+}
+
+variable "atlas_environment" {
+	default = "Panda/culturely"
 }

@@ -3,7 +3,7 @@
 #--------------------------------------------------------------
 resource "aws_security_group" "web" {
 	name = "web"
-	description "access to the web"
+	description = "access to the web"
 	vpc_id = "${aws_vpc.culturely_vpc.id}"
 
 	ingress {
@@ -61,12 +61,16 @@ resource "aws_security_group" "web" {
 		protocol  = "-1"
 		cidr_blocks = ["0.0.0.0/0"]
 	}
+
+    lifecycle {
+        create_before_destroy = true
+    }
 }
 
 resource "aws_security_group" "consul-security" {
-    name = "${var.security_group_name}"
-    description = "Security Group ${var.security_group_name}"
-    vpc_id = "${var.vpc_id}"
+    name = "consul-security"
+    description = "Security Group for Consul communication"
+    vpc_id = "${aws_vpc.culturely_vpc.id}"
 
     // allows traffic from the SG itself for tcp
     ingress {
@@ -146,5 +150,9 @@ resource "aws_security_group" "consul-security" {
         to_port = 8600
         protocol = "udp"
         cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    lifecycle {
+        create_before_destroy = true
     }
 }
