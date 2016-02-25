@@ -2,7 +2,7 @@
 #
 #
 class ntp::service (
-	$service_name = $npt::params::service_name
+	$service_name = $ntp::params::service_name
 
 	) {
 	# resources

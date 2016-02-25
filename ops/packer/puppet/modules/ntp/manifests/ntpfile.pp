@@ -14,7 +14,7 @@ define ntp::ntpfile (
 	file { 'ntptime':
 		path   => "${file_path}/ntp.conf",
 		ensure => file,
-		source => "puppet:///modules/ntp/npt.conf",
-		notify => Service['ntp']
+		source => 'puppet:///modules/ntp/ntp.conf',
+		notify => Service['ntp'],
 	}
 }

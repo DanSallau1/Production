@@ -1,6 +1,5 @@
 # Class: ntp::package (
-	)
-#
+
 #
 class ntp::package (
 	$package_name = $ntp::params::package_name
