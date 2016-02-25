@@ -114,41 +114,6 @@ resource "aws_elb" "elb" {
         lb_protocol = "http"
 	}
 
-	listener {
-		instance_port = 8300
-        instance_protocol = "tcp"
-        lb_port = 8300
-        lb_protocol = "tcp"
-	}
-
-	listener {
-		instance_port = 8301
-        instance_protocol = "tcp"
-        lb_port = 8301
-        lb_protocol = "tcp"
-	}
-
-	listener {
-		instance_port = 8400
-        instance_protocol = "tcp"
-        lb_port = 8400
-        lb_protocol = "tcp"
-	}
-
-	listener {
-		instance_port = 8500
-        instance_protocol = "tcp"
-        lb_port = 8500
-        lb_protocol = "tcp"
-	}
-
-	listener {
-		instance_port = 8600
-        instance_protocol = "tcp"
-        lb_port = 8600
-        lb_protocol = "tcp"
-	}
-
 	health_check {
 		healthy_threshold = 2
 		unhealthy_threshold = 2
