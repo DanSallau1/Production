@@ -114,6 +114,13 @@ resource "aws_elb" "elb" {
         lb_protocol = "http"
 	}
 
+	listener {
+		instance_port = 443
+		instance_protocol = "https"
+		lb_port = 443
+		lb_protocol = "https"
+	}
+
 	health_check {
 		healthy_threshold = 2
 		unhealthy_threshold = 2
