@@ -13,3 +13,5 @@ vendor/
 .DS_Store
 .pem
 .pub
+terraform.tfstate.backup
+.terraform
