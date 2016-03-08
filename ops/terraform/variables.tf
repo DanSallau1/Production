@@ -7,7 +7,7 @@ variable "region" {
 }
 
 variable "aws_access_key" {
-	default = "{{{env `AWS_ACCESS_KEY_ID`}}"
+	default = "{{env `AWS_ACCESS_KEY_ID`}}"
 }
 
 variable "aws_secret_key" {
@@ -15,7 +15,7 @@ variable "aws_secret_key" {
 }
 
 variable "atlas_token" {
-	default = "alJTHeHJmK77EQ.atlasv1.rg6W1p75CKDW1O4kLbOVkNRNcXsSrcUCTC1kQtkoWdpr9ZRCgafQlz1LM7Ab13PJ1JA"
+	default = "{{env `ATLAS_TOKEN`}}"
 }
 
 variable "atlas_username" {
