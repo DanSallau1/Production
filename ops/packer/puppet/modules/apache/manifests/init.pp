@@ -37,6 +37,4 @@ class apache (
 		webapp_dir    => $webapp_dir,
 		managerepo    => $managerepo,
 	}	
-
-
 }
