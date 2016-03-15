@@ -128,6 +128,12 @@ resource "aws_elb" "elb" {
 		create_before_destroy = true
 	}
 }
+#--------------------------------------------------------------
+# proxy protocol policy
+#--------------------------------------------------------------
+resource "aws_proxy_protocol_policy" "http" {
+	load_balancer = 
+}
 
 #--------------------------------------------------------------
 # DNS(Route53)
