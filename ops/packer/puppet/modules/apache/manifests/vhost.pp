@@ -15,7 +15,7 @@ define apache::vhost (
 
 	if ($managerepo) {
 		# enter puppet code
-		vcsrepo { $webapp_dir:
+		vcsrepo { $app_dir:
         	ensure   => latest,
             provider => git,
             source   => 'https://github.com/CruzanCaramele/Portfolio.git',
@@ -23,7 +23,7 @@ define apache::vhost (
             force    => true,
             require  => Package['apache'],
             notify   => Service['apache'],
-            before   => [File['config_file'], File['culturely']],
+            before   => File['config_file'],
     	}
 	}
 
