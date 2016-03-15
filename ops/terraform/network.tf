@@ -132,7 +132,8 @@ resource "aws_elb" "elb" {
 # proxy protocol policy
 #--------------------------------------------------------------
 resource "aws_proxy_protocol_policy" "http" {
-	load_balancer = "${aws_elb.elb.name}"
+	load_balancer  = "${aws_elb.elb.name}"
+	instance_ports = ["80"] 
 }
 
 #--------------------------------------------------------------
