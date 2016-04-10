@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Aqua Fashion | Leading brand of London & Paris</title>
+
+<!-- Google fonts -->
+<link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'>
+
+<!-- font awesome -->
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }} "/>
+
+<!-- uniform -->
+<link type="text/css" href="{{ url_for('static', filename='uniform/css/uniform.default.min.css') }} "/>
+
+<!-- animate.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='wow/animate.css') }}" />
+
+<!-- favico -->
+<link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">
+<link rel="icon" href="{{url_for('static', filename='images/favicon.ico') }}" type="image/x-icon">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- header -->
+<nav class="navbar  navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="clearfix">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index"><img src="{{url_for('static',filename='images/logo.png')}}"  alt="logo"><h1 class="hide">Aqua Fashion leading brand of london and paris</h1></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+      
+      <ul class="nav navbar-nav">        
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Collections <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="collections">Men</a></li>
+            <li><a href="collections">Women</a></li>
+            <li><a href="collections">Gifts</a></li>            
+          </ul>
+        </li>
+        <li><a href="lookbook">Look book</a></li>
+        <li><a href="checkout">checkout</a></li>
+      </ul>
+      
+      <form class="navbar-form navbar-left searchbar" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search for products">
+        </div>
+        <button type="submit" class="btn btn-inverse">search</button>
+      </form>
+      <ul class="nav navbar-nav">
+        {% if g.user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome {{g.user.username}} <span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+              <li><a href="{{ url_for('editaccount')}}">Edit Account</a></li>   
+              <li><a href="{{ url_for('user_collections') }}">My Collections</a></li>   
+                  
+            </ul>
+          </li> 
+        {% else %}
+          <li><a href="#"  data-toggle="modal" data-target="#login"><span class="glyphicon glyphicon-user"></span> Login / Register</a></li>
+        {% endif %}
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-shopping-cart"></span> Cart <span class="cart-counter">8</span> <span class="caret"></span></a>
+          <div class="dropdown-menu mini-cart">
+          <div class="row product-list">
+            <div class="col-xs-3"><a href="#"><img src="{{ url_for('static',filename ='images/products/1.jpg') }} "class="img-responsive" alt="product"></a></div>
+            <div class="col-xs-7"><a href="#">White V-neck Tshirt</a></div>
+            <div class="col-xs-1"><a href="#"><i class="fa fa-close"></i></a></div>
+          </div>
+
+          <div class="row product-list">
+            <div class="col-xs-3"><a href="#"><img src="{{ url_for('static',filename='images/products/2.jpg') }} " class="img-responsive" alt="product"></a></div>
+            <div class="col-xs-7"><a href="#">White V-neck Tshirt</a></div>
+            <div class="col-xs-1"><a href="#"><i class="fa fa-close"></i></a></div>
+          </div>
+
+          <div class="clearfix">
+          <a href="checkout" class="btn btn-primary pull-left">conitune shopping</a> <a href="checkout" class="btn btn-danger pull-right">checkout</a>
+          </div>
+
+          </div>
+        </li>
+      </ul>
+    </div><!-- Wnavbar-collapse -->
+  </div><!-- container-fluid -->
+</nav>
+<!-- header --> 
+

@@ -1,0 +1,121 @@
+{% extends 'template.html' %}
+{% block content %}
+ 
+ <div class="content inside-page checkout">
+
+ <div class="row">  
+	 <h2 class="title center">Edit Collection</h2>
+
+	  <form method="POST" class="form-horizontal col-sm-6 col-sm-offset-3" id="edit_collection_form" action="{{ url_for('edit_collection',title = product['title'], product_id = product['product_id'])  }}">
+
+	  <div class="panel-body">
+
+             
+	      	<div class="form-group">
+					<label for="lblCollectionTitle" class="col-sm-4 control-label">Title</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="txtCollectionTitle" value="{{ product['title']}}">
+					</div>				
+			</div>
+
+	      	<div class="form-group">
+					<label for="lblCollectionDescription" class="col-sm-4 control-label">Description
+					</label>
+					<div class="col-sm-8">
+						<textarea rows="4" class="form-control" id="txtCollectionDescription">{{ product['description'] }} </textarea>
+					</div>				
+			</div>
+		
+			 <div class="hide">
+				<div class="row product-list" id="clone_row">
+	            	<div class="col-xs-4 col-sm-4">
+	            		<a href="product.php"><img src="images/products/1.jpg" class="img-responsive imgpreview"  alt="product"></a>
+	            	</div>
+	            	<input type="hidden" class="avatar_url" name="avatar_url" value="/static/default.png" />
+	            	<div class="col-xs-6 col-sm-6 title">
+	            		<textarea rows="3" class="form-control" placeholder="Photo Description"></textarea>
+	            	</div>
+		            	<div class="col-xs-1 col-sm-1 center">
+			                 <label class="lblOpen">Open
+	                     	<i class="fa fa-folder-open-o fa-2x">
+	                     		<input type="file" class="file_input hide">
+	                     	</i>
+	                         
+	                     </label>
+	 	            	  <label class="lblClose">
+	                     	<a href="#"><i class="fa fa-close fa-2x"></i></a>
+	                     </label>
+	                     <label class="lblProgress">
+	                     	<a href="#"><img src="{{url_for('static',filename='images/progress.gif')}}" class="img-responsive imgpreview" height="10" width="10" alt="product"></a>
+	         
+	                     </label>
+		            	  
+		            </div>
+	          	</div>
+			 </div>
+            
+			<fieldset>
+		
+				<div class="panel panel-default">
+				<div class="panel-heading clearfix">Collection photos</div>
+				<div class="panel-body shopping-cart">
+					
+					<div class="row product-list title hidden-xs">
+		            	<div class="col-xs-4 col-sm-4">Product</div>
+		            	<div class="col-xs-6 col-sm-6 title">Description</div>
+	 	            	<div class="col-xs-1 center col-sm-1">Action</div>
+		          	</div>
+                    {% for item in productItem %}
+					<div class="row product-list">
+		            	<div class="col-xs-4 col-sm-4">
+		            		<a href="product.php">
+		            			<img src="{{ item['image_url'] }}" class="img-responsive"  alt="product" width="80px" height="80px">
+		            		</a>
+		            	</div>
+		            	<input type="hidden" class="avatar_url" name="avatar_url" value="/static/default.png" />
+		            	<div class="col-xs-6 col-sm-6 title">
+		            		<textarea rows="3" class="form-control">{{ item['image_description'] }}</textarea>
+		            	</div>
+	 	            	<div class="col-xs-1 col-sm-1 center">
+	                     <label class="lblOpen">Open
+	                     	<i class="fa fa-folder-open-o fa-2x">
+	                     		<input type="file" class="file_input hide">
+	                     	</i>
+	                         
+	                     </label>
+	 	            	  <label class="lblClose">
+	                     	<a href="#"><i class="fa fa-close fa-2x"></i></a>
+	                     </label>
+	 	            	</div>
+
+	               
+		          	</div>
+                    {% endfor %}
+
+		          	<div class="row product-list grandtotal">
+		            	<div class="col-xs-4 col-sm-4">Total</div>
+		            	<div class="col-xs-6 col-sm-6 title"><label for="lblPhotoTotal" id="lblPhotoTotal">0</label></div>
+	 	            	<div class="col-xs-1 center col-sm-1">
+				           <a href="#" class="btn btn-primary" id="btnAddImage">Add</a>
+	 	            	</div>       	
+		          	</div>
+               
+
+		        </div>
+		        
+		       </div>
+
+
+
+		       	<input name="refresh" class="btn btn-danger pull-left previous action-button" value="Cancel" id="btnCancel" />
+				<input type="submit" name="btnsubmit" class="btn btn-primary pull-right submit action-button" id ="btnSaveImage" value="Update" />
+             
+		    </fieldset>  
+
+	  </div>
+
+	  </form>
+	    
+	</div>  
+</div>
+{% endblock %}
